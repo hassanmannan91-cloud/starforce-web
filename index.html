@@ -8,10 +8,42 @@
 <style>
 body{
     margin:0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Arial', Helvetica, sans-serif;
     background:#000;
     color:#fff;
     text-align:center;
+    overflow-x:hidden;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity:0;
+        transform:translateY(-20px);
+    }
+    to {
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to {
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes glowPulse {
+    0%, 100% {
+        text-shadow:0 0 10px rgba(109,183,255,0.5);
+    }
+    50% {
+        text-shadow:0 0 20px rgba(109,183,255,0.8);
+    }
 }
 
 .container{
@@ -24,34 +56,107 @@ body{
     width:100%;
     max-width:500px;
     margin-top:20px;
+    animation:fadeInDown 1s ease-out;
+}
+
+h1{
+    font-size:32px;
+    margin-top:20px;
+    margin-bottom:10px;
+    color:#6db7ff;
+    animation:fadeInDown 1s ease-out 0.2s both;
+    text-shadow:0 0 10px rgba(109,183,255,0.3);
 }
 
 .tagline{
-    font-size:20px;
-    margin-top:20px;
+    font-size:18px;
+    margin-top:15px;
+    color:#ccc;
+    animation:fadeInUp 1s ease-out 0.4s both;
+    font-weight:300;
+    letter-spacing:0.5px;
+}
+
+.story{
+    max-width:700px;
+    margin:60px auto;
+    padding:40px;
+    background:rgba(15,15,35,0.6);
+    border-left:3px solid #6db7ff;
+    border-radius:5px;
+    animation:fadeInUp 1.2s ease-out 0.6s both;
+    text-align:left;
+    line-height:1.8;
+}
+
+.story h2{
+    text-align:center;
+    color:#6db7ff;
+    font-size:22px;
+    margin-top:0;
+    margin-bottom:25px;
+    text-shadow:0 0 10px rgba(109,183,255,0.3);
+}
+
+.story p{
     color:#ddd;
+    margin:15px 0;
+    font-size:15px;
+}
+
+.story-highlight{
+    color:#6db7ff;
+    font-weight:bold;
 }
 
 .screenshots{
-    margin-top:40px;
+    margin-top:60px;
+    animation:fadeInUp 1.4s ease-out 0.8s both;
+}
+
+.screenshots h2{
+    color:#6db7ff;
+    font-size:24px;
+    margin-bottom:30px;
+    text-shadow:0 0 10px rgba(109,183,255,0.3);
 }
 
 .screenshots img{
     width:100%;
     max-width:420px;
-    margin:15px 0;
+    margin:20px 0;
     border-radius:10px;
+    box-shadow:0 0 30px rgba(109,183,255,0.2);
+    transition:all 0.3s ease;
+}
+
+.screenshots img:hover{
+    box-shadow:0 0 50px rgba(109,183,255,0.4);
+    transform:scale(1.02);
 }
 
 .footer{
-    margin-top:50px;
+    margin-top:70px;
+    padding-top:30px;
+    border-top:1px solid #333;
     font-size:14px;
     color:#888;
+    animation:fadeInUp 1.6s ease-out 1s both;
+}
+
+.footer p:first-child{
+    margin:0 0 20px 0;
 }
 
 a{
     color:#6db7ff;
     text-decoration:none;
+    transition:all 0.3s ease;
+}
+
+a:hover{
+    text-shadow:0 0 10px rgba(109,183,255,0.6);
+    color:#9dd9ff;
 }
 </style>
 
@@ -63,12 +168,55 @@ a{
 
 <img src="images/logo.png" class="logo">
 
+<h1>Star Force: Cosmic Run</h1>
+
 <p class="tagline">
 Retro arcade space shooter. Dodge enemy fire, collect coins, unlock ships, and chase the ultimate high score.
 </p>
 
+<div class="story">
+<h2>Mission Briefing</h2>
+
+<p>For generations, the Star Force Academy has trained the finest pilots in the galaxy.</p>
+
+<p>Located on the distant orbital station Astra Prime, the Academy exists for one purpose: to prepare elite starfighter pilots to defend humanity's outer colonies. Only a handful of cadets ever graduate from its rigorous training program.</p>
+
+<p>You are one of them.</p>
+
+<p>Your final test was meant to be simple — a solo patrol beyond the outer asteroid belt. A routine exercise designed to prove you were ready to wear the Star Force insignia.</p>
+
+<p>But the patrol zone was not empty.</p>
+
+<p>Unidentified enemy fleets have begun emerging from deep space, appearing suddenly across multiple sectors. Their ships move in organized formations and attack anything that enters their territory.</p>
+
+<p><span class="story-highlight">No one knows where they came from.</span><br>
+<span class="story-highlight">No one knows how many there are.</span></p>
+
+<p>With communication relays failing and reinforcements hours away, your ship is the only defense standing between the enemy fleet and the nearby civilian colonies.</p>
+
+<p>Star Force Command has issued a single directive:</p>
+
+<p style="text-align:center; font-weight:bold; color:#6db7ff; margin-top:30px; margin-bottom:30px; font-size:18px;">Hold the line.</p>
+
+<p>Your mission is not to conquer the enemy fleet.<br>
+Your mission is to survive as long as possible, destroying enemy forces and buying precious time for the colonies to evacuate and for Star Force reinforcements to arrive.</p>
+
+<p><span class="story-highlight">Every enemy ship destroyed delays the invasion.</span><br>
+<span class="story-highlight">Every second you survive protects millions.</span></p>
+
+<p>You are no longer a cadet.</p>
+
+<p style="text-align:center; font-weight:bold; color:#6db7ff; font-size:18px; margin-top:30px; margin-bottom:30px;">You are now a Star Force Pilot.</p>
+
+<p style="text-align:center; margin-top:30px;">
+Engines ready.<br>
+Weapons hot.<br><br>
+<span style="color:#ff6b6b; font-weight:bold;">The battle begins now.</span>
+</p>
+</div>
+
 <div class="screenshots">
-<h2>Screenshots</h2>
+<h2>⸻ SCREENSHOTS ⸻</h2>
 
 <img src="images/ss1.png">
 <img src="images/ss2.png">
@@ -83,7 +231,7 @@ Retro arcade space shooter. Dodge enemy fire, collect coins, unlock ships, and c
 </p>
 
 <p>
-<a href="privacy.html">Privacy Policy</a>
+<a href="handbook.html">Handbook</a> | <a href="privacy.html">Privacy Policy</a>
 </p>
 </div>
 
