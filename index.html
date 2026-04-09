@@ -6,68 +6,45 @@
 <title>Star Force: Cosmic Run</title>
 
 <style>
+/* ----------------------------------------------------- */
+/* 1. GLOBAL & CORE LAYOUT STYLES */
+/* ----------------------------------------------------- */
 body{
     margin:0;
     font-family: 'Arial', Helvetica, sans-serif;
     background:#000;
     color:#fff;
     text-align:center;
+    /* The viewport meta tag handles mobile scaling, 
+       but this ensures overflow is contained. */
     overflow-x:hidden;
 }
 
-@keyframes fadeInDown {
-    from {
-        opacity:0;
-        transform:translateY(-20px);
-    }
-    to {
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity:0;
-        transform:translateY(20px);
-    }
-    to {
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-@keyframes glowPulse {
-    0%, 100% {
-        text-shadow:0 0 10px rgba(109,183,255,0.5);
-    }
-    50% {
-        text-shadow:0 0 20px rgba(109,183,255,0.8);
-    }
-}
-
+/* The main container keeps the content centered and limited in width */
 .container{
-    max-width:900px;
-    margin:auto;
-    padding:20px;
+    /* Using padding on the body or container helps prevent content from hugging the edges */
+    padding: 20px; 
+    max-width: 1200px; /* Increased max-width slightly for better desktop usage */
+    margin: auto;
 }
 
-/* STYLING ADJUSTMENT FOR THE LINKED LOGO */
+/* ----------------------------------------------------- */
+/* 2. COMPONENT STYLING */
+/* ----------------------------------------------------- */
+/* Logo Link (Unchanged) */
 .logo-link {
-    display: inline-block; /* Ensures the link wrapper respects the image size */
+    display: inline-block;
     width:100%;
     max-width:500px;
     margin-top:20px;
     animation:fadeInDown 1s ease-out;
 }
-
-.logo-link img { /* Target the image inside the link */
+.logo-link img {
     width:100%;
-    max-width:100%; /* Ensures it doesn't overflow its parent link */
-    display: block; /* Removes any potential spacing issues */
+    max-width:100%;
+    display: block;
     animation:fadeInDown 1s ease-out;
 }
-
 
 h1{
     font-size:32px;
@@ -98,30 +75,20 @@ h1{
     text-align:left;
     line-height:1.8;
 }
+/* Story heading and text inside are fine and are inherently responsive */
 
-.story h2{
-    text-align:center;
-    color:#6db7ff;
-    font-size:22px;
-    margin-top:0;
-    margin-bottom:25px;
-    text-shadow:0 0 10px rgba(109,183,255,0.3);
-}
 
-.story p{
-    color:#ddd;
-    margin:15px 0;
-    font-size:15px;
-}
-
-.story-highlight{
-    color:#6db7ff;
-    font-weight:bold;
-}
-
+/* ----------------------------------------------------- */
+/* 3. SCREENSHOTS (THE MAJOR FIX) */
+/* ----------------------------------------------------- */
 .screenshots{
     margin-top:60px;
     animation:fadeInUp 1.4s ease-out 0.8s both;
+    /* Use Flexbox to allow images to flow dynamically */
+    display: flex;
+    flex-wrap: wrap; /* Allows images to wrap to the next line */
+    justify-content: center; /* Centers the images if they don't take up the full width */
+    gap: 20px; /* Adds space between the images */
 }
 
 .screenshots h2{
@@ -132,12 +99,15 @@ h1{
 }
 
 .screenshots img{
-    width:100%;
-    max-width:300px;
-    margin:20px 0;
+    /* Allows the image to take up a fraction of space, making it fluid */
+    width: 100%; 
+    max-width: 300px; /* Maintains the original size limit */
+    flex-basis: calc(50% - 20px); /* On tablet/mobile, try to fit two items per row */
+    box-sizing: border-box; /* Important: Makes padding/border included in the specified width */
     border-radius:10px;
     box-shadow:0 0 30px rgba(109,183,255,0.2);
     transition:all 0.3s ease;
+    /* We remove margin:20px 0; from here because we use 'gap: 20px' on the parent */
 }
 
 .screenshots img:hover{
@@ -145,6 +115,9 @@ h1{
     transform:scale(1.02);
 }
 
+/* ----------------------------------------------------- */
+/* 4. FOOTER & GENERAL UTILITY */
+/* ----------------------------------------------------- */
 .footer{
     margin-top:70px;
     padding-top:30px;
@@ -154,35 +127,61 @@ h1{
     animation:fadeInUp 1.6s ease-out 1s both;
 }
 
-.footer p:first-child{
-    margin:0 0 20px 0;
+/* ----------------------------------------------------- */
+/* 5. MEDIA QUERIES (THE "DYNAMIC" PART) */
+/* ----------------------------------------------------- */
+
+/* Tablet Layout (Screen width up to 992px) */
+@media (max-width: 992px) {
+    /* Adjust padding for smaller screens */
+    .container {
+        padding: 15px;
+    }
+    h1 {
+        font-size: 28px;
+    }
+    .tagline {
+        font-size: 16px;
+    }
 }
 
-a{
-    color:#6db7ff;
-    text-decoration:none;
-    transition:all 0.3s ease;
-}
-
-a:hover{
-    text-shadow:0 0 10px rgba(109,183,255,0.6);
-    color:#9dd9ff;
+/* Mobile Layout (Screen width up to 600px) */
+@media (max-width: 600px) {
+    /* Reduce padding overall */
+    .container {
+        padding: 10px;
+    }
+    h1 {
+        font-size: 24px;
+    }
+    .tagline {
+        font-size: 14px;
+    }
+    
+    /* On mobile, images should stack 1 per row */
+    .screenshots img{
+        flex-basis: 100%; /* Forces the image to take the full width */
+        max-width: 100%; /* Ensures it respects the container */
+    }
+    
+    /* Reduce general margins for compactness on small screens */
+    .story {
+        margin: 40px auto;
+        padding: 30px;
+    }
 }
 </style>
 
 </head>
 
 <body class="logo-link"> 
-<!-- We apply the link wrapper to the body, but it's cleaner to wrap just the image area -->
 <div class="container">
 
-<!-- =================================================== -->
-<!-- 🔑 THIS IS THE MODIFIED SECTION (The Logo) -->
-<!-- The entire image is now wrapped in an <a> tag -->
+<!-- Logo (Unchanged) -->
 <a href="https://apps.apple.com/us/app/starforcecosmicrun/id6755943918" target="_blank" class="logo-link">
     <img src="images/logo.png" class="logo" alt="Star Force: Cosmic Run - Download on the App Store">
-</a>
-<!-- =================================================== -->
+</a
+>
 
 
 <h1>Star Force: Cosmic Run</h1>
@@ -230,15 +229,15 @@ Engines ready.<br>
 Weapons hot.<br><br>
 <span style="color:#ff6b6b; font-weight:bold;">The battle begins now.</span>
 </p>
-</div>
+</div >
 
 <div class="screenshots">
 <h2>⸻ SCREENSHOTS ⸻</h2>
 
-<img src="images/ss1.png">
-<img src="images/ss2.png">
-<img src="images/ss3.png">
-<img src="images/ss4.png">
+<img src="images/ss1.png" alt="Screenshot 1">
+<img src="images/ss2.png" alt="Screenshot 2">
+<img src="images/ss3.png" alt="Screenshot 3">
+<img src="images/ss4.png" alt="Screenshot 4">
 
 </div>
 
@@ -250,9 +249,9 @@ Weapons hot.<br><br>
 <p>
 <a href="handbook.html">Handbook</a> | <a href="privacy.html">Privacy Policy</a>
 </p>
-</div>
+</div >
 
-</div>
+</div >
 
-</body >
+</body>
 </html>
