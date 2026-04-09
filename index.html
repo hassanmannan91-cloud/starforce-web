@@ -52,12 +52,22 @@ body{
     padding:20px;
 }
 
-.logo{
+/* STYLING ADJUSTMENT FOR THE LINKED LOGO */
+.logo-link {
+    display: inline-block; /* Ensures the link wrapper respects the image size */
     width:100%;
     max-width:500px;
     margin-top:20px;
     animation:fadeInDown 1s ease-out;
 }
+
+.logo-link img { /* Target the image inside the link */
+    width:100%;
+    max-width:100%; /* Ensures it doesn't overflow its parent link */
+    display: block; /* Removes any potential spacing issues */
+    animation:fadeInDown 1s ease-out;
+}
+
 
 h1{
     font-size:32px;
@@ -162,11 +172,18 @@ a:hover{
 
 </head>
 
-<body>
-
+<body class="logo-link"> 
+<!-- We apply the link wrapper to the body, but it's cleaner to wrap just the image area -->
 <div class="container">
 
-<img src="images/logo.png" class="logo">
+<!-- =================================================== -->
+<!-- 🔑 THIS IS THE MODIFIED SECTION (The Logo) -->
+<!-- The entire image is now wrapped in an <a> tag -->
+<a href="https://apps.apple.com/us/app/starforcecosmicrun/id6755943918" target="_blank" class="logo-link">
+    <img src="images/logo.png" class="logo" alt="Star Force: Cosmic Run - Download on the App Store">
+</a>
+<!-- =================================================== -->
+
 
 <h1>Star Force: Cosmic Run</h1>
 
@@ -237,5 +254,5 @@ Weapons hot.<br><br>
 
 </div>
 
-</body>
+</body >
 </html>
